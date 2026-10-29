@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ShipmentStatus {
+  CREATED
+  PICKED_UP
+  CANCELLED
+}
+
+model Shipment {
+  id             String         @id @default(uuid())
+  trackingNumber String         @unique @map("tracking_number")
+  senderId       String         @map("sender_id")
+
+  senderName         String @map("sender_name")
+  senderEmail        String @map("sender_email")
+  senderStreetNumber Int    @map("sender_street_number")
+  senderStreetName   String @map("sender_street_name")
+  senderPostCode     String @map("sender_post_code")
+  senderCity         String @map("sender_city")
+
+  recipientName         String @map("recipient_name")
+  recipientEmail        String @map("recipient_email")
+  recipientStreetNumber Int    @map("recipient_street_number")
+  recipientStreetName   String @map("recipient_street_name")
+  recipientPostCode     String @map("recipient_post_code")
+  recipientCity         String @map("recipient_city")
+
+  weightGrams Int            @map("weight_grams")
+  status      ShipmentStatus @default(CREATED)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("shipments")
+}
