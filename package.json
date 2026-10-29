@@ -6,7 +6,8 @@
     "dev": "tsx watch server.ts",
     "start": "tsx server.ts",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
     "prisma": "^7.10.1",
     "supertest": "^7.3.1",
     "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
     "vitest": "^5.0.5"
   },
   "dependencies": {
